@@ -12,7 +12,8 @@ import com.gorisse.thomas.sceneform.environment.IBLPrefilter
 object Filament {
 
     @JvmStatic
-    val engine = EngineInstance.getEngine().filamentEngine
+    val engine
+        get() = EngineInstance.getEngine().filamentEngine
 
     @JvmStatic
     val entityManager

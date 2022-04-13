@@ -18,20 +18,20 @@ object Filament {
     val entityManager
         get() = EntityManager.get()
 
-    val uberShaderLoader by lazy { UbershaderLoader(engine) }
+    val uberShaderLoader by lazy { UbershaderLoader(EngineInstance.getEngine().filamentEngine) }
 
     @JvmStatic
     val assetLoader by lazy {
-        AssetLoader(engine, uberShaderLoader, entityManager)
+        AssetLoader(EngineInstance.getEngine().filamentEngine, uberShaderLoader, entityManager)
     }
 
-    val transformManager get() = engine.transformManager
+    val transformManager get() = EngineInstance.getEngine().filamentEngine.transformManager
 
-    val resourceLoader by lazy { ResourceLoader(engine, true, false, false) }
+    val resourceLoader by lazy { ResourceLoader(EngineInstance.getEngine().filamentEngine, true, false, false) }
 
-    val lightManager get() = engine.lightManager
+    val lightManager get() = EngineInstance.getEngine().filamentEngine.lightManager
 
-    val iblPrefilter by lazy { IBLPrefilter(engine) }
+    val iblPrefilter by lazy { IBLPrefilter(EngineInstance.getEngine().filamentEngine) }
 }
 
 fun Float4.toFloatArray() = this.let { (x, y, z, w) -> floatArrayOf(x, y, z, w) }

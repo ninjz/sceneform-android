@@ -9,6 +9,7 @@ import com.google.android.filament.gltfio.Gltfio;
 
 import com.google.android.filament.utils.Utils;
 import com.google.ar.sceneform.utilities.Preconditions;
+import com.gorisse.thomas.sceneform.FilamentKt;
 
 /**
  * Store a single Filament Engine instance.

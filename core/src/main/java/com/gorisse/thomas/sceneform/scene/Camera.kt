@@ -2,6 +2,7 @@ package com.gorisse.thomas.sceneform.scene
 
 import com.google.android.filament.Camera
 import com.google.android.filament.utils.pow
+import com.google.ar.sceneform.rendering.EngineInstance
 import com.gorisse.thomas.sceneform.Filament
 import kotlin.math.log2
 
@@ -55,6 +56,6 @@ fun Camera.luminance(ev100: Float) = pow(2.0f, ev100 - 3.0f)
  * Destroys the Camera component associated with the camera entity.
  */
 fun Camera.destroy() {
-    Filament.engine.destroyCameraComponent(entity)
+    EngineInstance.getEngine().filamentEngine.destroyCameraComponent(entity)
     Filament.entityManager.destroy(entity)
 }

@@ -4,7 +4,6 @@ import com.google.android.filament.IndirectLight
 import com.google.android.filament.Skybox
 import com.google.android.filament.utils.HDRLoader
 import com.google.android.filament.utils.KTXLoader
-import com.google.ar.sceneform.rendering.EngineInstance
 import com.gorisse.thomas.sceneform.Filament
 import com.gorisse.thomas.sceneform.light.destroy
 import java.io.Closeable
@@ -112,11 +111,11 @@ open class Environment(
 /**
  * @see Skybox.Builder.build
  */
-fun Skybox.Builder.build(): Skybox = build(EngineInstance.getEngine().filamentEngine)
+fun Skybox.Builder.build(): Skybox = build(Filament.engine)
 
 /**
  * Destroys a Skybox and frees all its associated resources.
  */
 fun Skybox.destroy() {
-    EngineInstance.getEngine().filamentEngine.destroySkybox(this)
+    Filament.engine.destroySkybox(this)
 }

@@ -8,7 +8,6 @@ import com.google.android.filament.Skybox
 import com.google.android.filament.Texture
 import com.google.android.filament.utils.HDRLoader
 import com.google.android.filament.utils.IBLPrefilterContext
-import com.google.ar.sceneform.rendering.EngineInstance
 import com.gorisse.thomas.sceneform.Filament
 import com.gorisse.thomas.sceneform.light.build
 import com.gorisse.thomas.sceneform.material.destroy
@@ -153,7 +152,7 @@ fun HDRLoader.loadEnvironmentAsync(
 fun HDRLoader.createEnvironment(
     hdrBuffer: Buffer,
     specularFilter: Boolean = defaultSpecularFilter
-) = createTexture(EngineInstance.getEngine().filamentEngine, hdrBuffer)?.use { hdrTexture ->
+) = createTexture(Filament.engine, hdrBuffer)?.use { hdrTexture ->
     Filament.iblPrefilter.equirectangularToCubemap(hdrTexture)
 }?.let { cubemap ->
     HDREnvironment(cubemap = cubemap, skyboxEnvironment = cubemap, specularFilter = specularFilter)

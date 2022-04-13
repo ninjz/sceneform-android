@@ -3,7 +3,6 @@ package com.gorisse.thomas.sceneform.light
 import com.google.android.filament.EntityInstance
 import com.google.android.filament.IndirectLight
 import com.google.android.filament.LightManager
-import com.google.ar.sceneform.rendering.EngineInstance
 import com.gorisse.thomas.sceneform.*
 
 /**
@@ -28,7 +27,7 @@ val Light.instance @EntityInstance get() : LightInstance = Filament.lightManager
  */
 fun LightManager.Builder.build(): Light =
     Filament.entityManager.create().apply {
-        build(EngineInstance.getEngine().filamentEngine, this)
+        build(Filament.engine, this)
     }
 
 /**
@@ -157,11 +156,11 @@ fun Light.destroy() {
 /**
  * @see IndirectLight.Builder.build
  */
-fun IndirectLight.Builder.build(): IndirectLight = build(EngineInstance.getEngine().filamentEngine)
+fun IndirectLight.Builder.build(): IndirectLight = build(Filament.engine)
 
 /**
  * Destroys an IndirectLight and frees all its associated resources.
  */
 fun IndirectLight.destroy() {
-    EngineInstance.getEngine().filamentEngine.destroyIndirectLight(this)
+    Filament.engine.destroyIndirectLight(this)
 }

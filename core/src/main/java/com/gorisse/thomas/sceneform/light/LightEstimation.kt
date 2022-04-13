@@ -7,7 +7,6 @@ import com.google.android.filament.utils.pow
 import com.google.ar.core.Config
 import com.google.ar.core.Frame
 import com.google.ar.core.LightEstimate
-import com.google.ar.sceneform.rendering.EngineInstance
 import com.gorisse.thomas.sceneform.*
 import com.gorisse.thomas.sceneform.environment.Environment
 import com.gorisse.thomas.sceneform.environment.HDREnvironment
@@ -436,7 +435,7 @@ fun LightEstimate.environmentalHdrEnvironmentLights(
                     .levels(0xff)
                     .sampler(Texture.Sampler.SAMPLER_CUBEMAP)
                     .format(Texture.InternalFormat.R11F_G11F_B10F)
-                    .build(EngineInstance.getEngine().filamentEngine)
+                    .build(Filament.engine)
                 texture.apply {
                     // TODO : Remove generatePrefilterMipmap and uncomment specularFilter =
                     //  withReflections &&  withSpecularFilter when Filament move async
@@ -444,14 +443,14 @@ fun LightEstimate.environmentalHdrEnvironmentLights(
                     //  the rendering too laggy
                     //  https://github.com/google/filament/discussions/4665
                     if (withSpecularFilter) {
-                        generatePrefilterMipmap(EngineInstance.getEngine().filamentEngine,
+                        generatePrefilterMipmap(Filament.engine,
                             buffer,
                             faceOffsets,
                             Texture.PrefilterOptions().apply {
                                 mirror = false
                             })
                     } else {
-                        setImage(EngineInstance.getEngine().filamentEngine, 0, buffer, faceOffsets)
+                        setImage(Filament.engine, 0, buffer, faceOffsets)
                     }
                 }
             }

@@ -84,6 +84,7 @@ public class EngineInstance {
         Preconditions.checkNotNull(engine).destroy();
       }
       engine = null;
+      filamentInitialized = false;
     }
   }
 
